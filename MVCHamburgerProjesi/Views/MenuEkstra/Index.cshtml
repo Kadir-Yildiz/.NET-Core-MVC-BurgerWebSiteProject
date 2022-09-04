@@ -1,0 +1,99 @@
+﻿@model MenuEkstraViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h3>Menü Ekleme</h3>
+
+
+<form asp-action="MenuEkle" method="post">
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label">Menü Adı</label>
+                <input type="text" class="form-control" asp-for="MenuAd" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label">Fiyatı</label>
+                <input type="text" class="form-control" asp-for="Fiyat" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <br />
+                <input type="submit" value="EKLE" class="btn btn-success" />
+            </div>
+        </div>
+
+
+    </div>
+</form>
+
+<br />
+<hr />
+<br />
+
+<h3>Ekstra Malzeme Ekleme</h3>
+
+
+<form asp-action="EkstraEkle" method="post">
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label">Ekstra Malzeme Adı</label>
+                <input type="text" class="form-control" asp-for="EkstraAd" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label">Fiyatı</label>
+                <input type="text" class="form-control" asp-for="Fiyat" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <br />
+                <input type="submit" value="EKLE" class="btn btn-success" />
+            </div>
+        </div>
+
+
+    </div>
+</form>
+
+
+@*<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MenuAd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fiyat)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MenuAd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fiyat)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>*@
