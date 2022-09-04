@@ -1,6 +1,11 @@
+global using Microsoft.EntityFrameworkCore;
+global using MVCHamburgerProjesi.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+var cs = builder.Configuration.GetConnectionString("BaglantiCumlem");
+builder.Services.AddDbContext<ApplicationDbContext>(optionsBuilder => optionsBuilder.UseSqlServer(cs));
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
