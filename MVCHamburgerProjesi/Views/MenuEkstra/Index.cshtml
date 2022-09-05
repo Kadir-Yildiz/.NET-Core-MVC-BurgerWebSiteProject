@@ -7,7 +7,7 @@
 <h3>Menü Ekleme</h3>
 
 
-<form asp-action="MenuEkle" method="post">
+<form asp-controller="MenuEkstra" asp-action="MenuEkle" method="post">
     <div class="row">
 
         <div class="col-md-4">
@@ -40,7 +40,7 @@
 <h3>Ekstra Malzeme Ekleme</h3>
 
 
-<form asp-action="EkstraEkle" method="post">
+<form asp-controller="MenuEkstra" asp-action="EkstraEkle" method="post">
     <div class="row">
 
         <div class="col-md-4">
@@ -66,21 +66,22 @@
     </div>
 </form>
 
-
-@*<table class="table">
+<br />
+<h3>Menüler</h3>
+<table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.MenuAd)
+                Menü Adı
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Fiyat)
+                Menü Fiyatı
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (Menu item in ViewBag.Menuler) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.MenuAd)
@@ -89,11 +90,41 @@
                 @Html.DisplayFor(modelItem => item.Fiyat)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a class="btn btn-danger btn-sm float-end" asp-action="MenuSil" asp-route-id="@item.Id">Sil</a>
+                    <a class="btn btn-primary btn-sm float-end" asp-action="Edit" asp-route-id="@item.Id">Güncelle</a>
             </td>
         </tr>
 }
     </tbody>
-</table>*@
+</table>
+<h3>Ekstralar</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Ekstra Adı
+            </th>
+            <th>
+                Ekstra Fiyatı
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Ekstra item in ViewBag.Ekstralar)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EkstraAd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fiyat)
+                </td>
+                <td>
+                    <a class="btn btn-danger btn-sm float-end" asp-action="EkstraSil" asp-route-id="@item.Id">Sil</a>
+                    <a class="btn btn-primary btn-sm float-end" asp-action="Edit" asp-route-id="@item.Id">Güncelle</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
