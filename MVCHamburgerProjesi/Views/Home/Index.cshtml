@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Siparis
+@{
 	ViewData["Title"] = "Home Page";
 }
 
@@ -13,23 +14,23 @@
 </div>
 
 
-
+<form asp-controller="Home" asp-action="SiparisEkle" method="post">
 <div class="row">
 	<div class="col-md-3"></div>
 	<div class="col-md-1 form-check">
-		<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+		<input asp-for="Boyut" class="form-check-input" type="radio" value="Küçük" >
 		<label class="form-check-label" for="flexRadioDefault1">
 			Küçük
 		</label>
 	</div>
 	<div class="col-md-1 form-check">
-		<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+		<input asp-for="Boyut" class="form-check-input" type="radio" value="Orta">
 		<label class="form-check-label" for="flexRadioDefault1">
 			Orta
 		</label>
 	</div>
 	<div class="col-md-1 form-check">
-		<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+		<input asp-for="Boyut" class="form-check-input" type="radio" value="Büyük" >
 		<label class="form-check-label" for="flexRadioDefault1">
 			Büyük
 		</label>
@@ -48,7 +49,7 @@
 <div class="row">
 	<div class="col-md-3"></div>
 	<div class="col-md-3">
-		<select class="form-control"></select>
+		<select asp-for="MenuId" class="form-control" asp-items="@(new SelectList(@ViewBag.Menuler,"Id","MenuFiyat"))"></select>
 	</div>
 </div>
 
@@ -59,28 +60,19 @@
 	</div>
 </div>
 
+@foreach (Ekstra item in ViewBag.Ekstralar)
+	{
+		<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-1 form-check">
+				<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+				<label class="form-check-label" for="flexCheckDefault">
+					@item.EkstraAd
+				</label>
+			</div>
+		</div>
+	}
 
-<div class="row">
-	<div class="col-md-3"></div>
-	<div class="col-md-1 form-check">
-		<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-		<label class="form-check-label" for="flexCheckDefault">
-			Ketçap
-		</label>
-	</div>
-	<div class="col-md-1 form-check">
-		<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-		<label class="form-check-label" for="flexCheckDefault">
-			Mayonez
-		</label>
-	</div>
-	<div class="col-md-1 form-check">
-		<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-		<label class="form-check-label" for="flexCheckDefault">
-			Ranch
-		</label>
-	</div>
-</div>
 <div class="row">
 	<div class="col-md-3"></div>
 	<div class="col-md-1 form-check">
@@ -114,7 +106,7 @@
 <div class="row">
 	<div class="col-md-3"></div>
 	<div class="col-md-3">
-		<button class="form-control">SİPARİŞ EKLE</button>
+			<input type="submit" value="Sipariş Ekle" class="btn btn-primary" />
 	</div>
 	<div class="col-md-3">
 		Toplam Tutar
@@ -124,3 +116,4 @@
 		<button class="form-control">SİPARİŞ EKLE</button>
 	</div>
 </div>
+</form>
