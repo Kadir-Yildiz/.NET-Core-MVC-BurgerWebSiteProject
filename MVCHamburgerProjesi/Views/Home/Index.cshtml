@@ -4,116 +4,112 @@
 }
 
 <div class="row">
-	<div class="col-md-3"></div>
-	<div class="col-md-3">
-		<img src="~/img/Hamburger.jpg" alt="" class="form-control" />
-	</div>
-
-	<div class="col-md-3">
-	</div>
-</div>
-
-
-<form asp-controller="Home" asp-action="SiparisEkle" method="post">
-<div class="row">
-	<div class="col-md-3"></div>
-	<div class="col-md-1 form-check">
-		<input asp-for="Boyut" class="form-check-input" type="radio" value="Küçük" >
-		<label class="form-check-label" for="flexRadioDefault1">
-			Küçük
-		</label>
-	</div>
-	<div class="col-md-1 form-check">
-		<input asp-for="Boyut" class="form-check-input" type="radio" value="Orta">
-		<label class="form-check-label" for="flexRadioDefault1">
-			Orta
-		</label>
-	</div>
-	<div class="col-md-1 form-check">
-		<input asp-for="Boyut" class="form-check-input" type="radio" value="Büyük" >
-		<label class="form-check-label" for="flexRadioDefault1">
-			Büyük
-		</label>
-	</div>
-</div>
-
-
-
-<div class="row">
-	<div class="col-md-3"></div>
-	<div class="col-md-3">
-		<label class="form-control">MENÜ SEÇİN</label>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-md-3"></div>
-	<div class="col-md-3">
-		<select asp-for="MenuId" class="form-control" asp-items="@(new SelectList(@ViewBag.Menuler,"Id","MenuFiyat"))"></select>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-md-3"></div>
-	<div class="col-md-3">
-		<label class="form-control">MALZEME SEÇİN</label>
-	</div>
-</div>
-
-@foreach (Ekstra item in ViewBag.Ekstralar)
-	{
+	<div class="col-md-6">
 		<div class="row">
-			<div class="col-md-3"></div>
-			<div class="col-md-1 form-check">
-				<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-				<label class="form-check-label" for="flexCheckDefault">
-					@item.EkstraAd
-				</label>
+			<div class="col-md-10">
+				<img src="~/img/Hamburger.jpg" alt="" class="form-control" />
+			</div>
+
+			<div class="col-md-3">
 			</div>
 		</div>
-	}
-
-<div class="row">
-	<div class="col-md-3"></div>
-	<div class="col-md-1 form-check">
-		<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-		<label class="form-check-label" for="flexCheckDefault">
-			Ketçap
-		</label>
-	</div>
-	<div class="col-md-1 form-check">
-		<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-		<label class="form-check-label" for="flexCheckDefault">
-			Mayonez
-		</label>
-	</div>
-	<div class="col-md-1 form-check">
-		<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-		<label class="form-check-label" for="flexCheckDefault">
-			Ranch
-		</label>
-	</div>
-</div>
 
 
-<div class="row">
-	<div class="col-md-3"></div>
-	<div class="col-md-3">
-		ADET
-		<input type="number" value="" />
+		<form asp-controller="Home" asp-action="SiparisEkle" method="post">
+			<div class="row">
+				<div class="col-md-1"></div>
+				<div class="col-md-3 form-check">
+					<input asp-for="Boyut" class="form-check-input" type="radio" value="Küçük">
+					<label class="form-check-label" for="flexRadioDefault1">
+						Küçük
+					</label>
+				</div>
+				<div class="col-md-3 form-check">
+					<input asp-for="Boyut" class="form-check-input" type="radio" value="Orta">
+					<label class="form-check-label" for="flexRadioDefault1">
+						Orta
+					</label>
+				</div>
+				<div class="col-md-3 form-check">
+					<input asp-for="Boyut" class="form-check-input" type="radio" value="Büyük">
+					<label class="form-check-label" for="flexRadioDefault1">
+						Büyük
+					</label>
+				</div>
+			</div>
+
+
+
+			<div class="row">
+				<div class="col-md-10">
+					<label class="form-control">MENÜ SEÇİN</label>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-10">
+					<select asp-for="MenuId" class="form-control" asp-items="@(new SelectList(@ViewBag.Menuler,"Id","MenuFiyat"))"></select>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-10">
+					<label class="form-control">MALZEME SEÇİN</label>
+				</div>
+			</div>
+
+			<div class="row">
+				@{
+					int count = 0;
+					foreach (Ekstra item in ViewBag.Ekstralar)
+					{
+						if (count==0)
+						{
+									<div class="col-md-1"></div>
+						}
+								<div class="col-md-3 form-check">
+									<input  class="form-check-input" type="checkbox" value="@item.EkstraAd" id="flexCheckDefault">
+									<label class="form-check-label" for="flexCheckDefault">
+										@item.EkstraAd 
+									</label>
+								</div>
+						count++;
+						if (count % 3 == 0)
+						{
+									<div class="row"></div>
+									<div class="col-md-1"></div>
+						}
+					}
+				}
+
+			</div>
+
+
+			<div class="row">
+				<div class="col-md-5">
+					ADET
+					<input asp-for="Adet" type="number" value="" />
+				</div>
+				<div class="col-md-5">
+					<input style=" border:none;" type="submit" value="Sipariş Ekle" class="btn btn-primary float-end" />
+				</div>
+			</div>
+			<div class="row">
+			</div>
+		</form>
 	</div>
+	<div class="col-md-6">
+		<table class="table">
+			<thead>
+				<tr>
+					<td>Menü</td>
+					<td>Ekstralar</td>
+					<td>Fiyat</td>
+				</tr>
+			</thead>
+		</table>
+	</div>
+
+
+
 </div>
-<div class="row">
-	<div class="col-md-3"></div>
-	<div class="col-md-3">
-			<input type="submit" value="Sipariş Ekle" class="btn btn-primary" />
-	</div>
-	<div class="col-md-3">
-		Toplam Tutar
-		<input type="text" value="" />
-	</div>
-	<div class="col-md-3">
-		<button class="form-control">SİPARİŞ EKLE</button>
-	</div>
-</div>
-</form>
