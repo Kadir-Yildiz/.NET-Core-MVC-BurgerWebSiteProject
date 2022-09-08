@@ -68,7 +68,7 @@
 									<div class="col-md-1"></div>
 						}
 								<div class="col-md-3 form-check">
-									<input  class="form-check-input" type="checkbox" value="@item.EkstraAd" id="flexCheckDefault">
+									<input  class="form-check-input" type="checkbox" name="ekstralar" value="@item.EkstraAd" id="flexCheckDefault">
 									<label class="form-check-label" for="flexCheckDefault">
 										@item.EkstraAd 
 									</label>
@@ -88,7 +88,7 @@
 			<div class="row">
 				<div class="col-md-5">
 					ADET
-					<input asp-for="Adet" type="number" value="" />
+					<input asp-for="Adet" type="number" value="1" />
 				</div>
 				<div class="col-md-5">
 					<input style=" border:none;" type="submit" value="Sipariş Ekle" class="btn btn-primary float-end" />
@@ -104,9 +104,38 @@
 				<tr>
 					<td>Menü</td>
 					<td>Ekstralar</td>
+					<td>Boyut</td>
 					<td>Fiyat</td>
 				</tr>
 			</thead>
+			<tbody>
+				@if (@ViewBag.Siparisler.Count>0)
+				{
+					@foreach (Siparis item in @ViewBag.Siparisler)
+				{
+					<tr>
+						<td>@(item.Adet) x @(item.SeciliMenu.MenuFiyat)</td>
+						<td>
+							@item.Ekstralar
+						</td>
+						<td>
+							@item.Boyut
+						</td>
+						<td>@item.ToplamTutar</td>
+					</tr>
+				}
+				}
+			</tbody>
+			<tfoot>
+				
+				<a asp-action="SiparisTamamla" asp-controller="Home" class="btn btn-success float-end">Siparişi Tamamla</a>
+				<tr>
+					<td></td>
+					<td></td>
+					<td>Toplam</td>
+					<td>@ViewBag.Toplam.ToString("C")</td>
+				</tr>
+			</tfoot>
 		</table>
 	</div>
 
