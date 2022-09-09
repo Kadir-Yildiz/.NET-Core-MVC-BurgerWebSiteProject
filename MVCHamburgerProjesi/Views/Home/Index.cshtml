@@ -42,19 +42,19 @@
 
 			<div class="row">
 				<div class="col-md-10">
-					<label class="form-control">MENÜ SEÇİN</label>
+					<label class="mb-1">MENÜ SEÇİN</label>
 				</div>
 			</div>
 
 			<div class="row">
-				<div class="col-md-10">
+				<div class="col-md-10 mb-2">
 					<select asp-for="MenuId" class="form-control" asp-items="@(new SelectList(@ViewBag.Menuler,"Id","MenuFiyat"))"></select>
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="col-md-10">
-					<label class="form-control">MALZEME SEÇİN</label>
+					<label class="mb-2">MALZEME SEÇİN</label>
 				</div>
 			</div>
 
@@ -86,11 +86,11 @@
 
 
 			<div class="row">
-				<div class="col-md-5">
+				<div class="col-md-5 mt-4">
 					ADET
 					<input asp-for="Adet" type="number" value="1" />
 				</div>
-				<div class="col-md-5">
+				<div class="col-md-5 mt-4">
 					<input style=" border:none;" type="submit" value="Sipariş Ekle" class="btn btn-primary float-end" />
 				</div>
 			</div>
