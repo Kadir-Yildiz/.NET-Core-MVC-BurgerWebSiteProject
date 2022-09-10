@@ -56,6 +56,18 @@ namespace MVCHamburgerProjesi.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
+        public IActionResult EkstraDuzenle(int id)
+        {
+            Ekstra menu = _db.Ekstralar.Where(x => x.Id == id).FirstOrDefault();
+            return View(menu);
+        }
+        [HttpPost]
+        public IActionResult EkstraDuzenle(Ekstra ekstra)
+        {
+            _db.Ekstralar.Update(ekstra);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
         public IActionResult MenuSil(int id)
         {
             var menu = _db.Menuler.Where(x=>x.Id == id).FirstOrDefault();
