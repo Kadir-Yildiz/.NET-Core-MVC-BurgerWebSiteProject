@@ -42,6 +42,13 @@ namespace MVCHamburgerProjesi.Controllers
 
             return RedirectToAction("Index");
         }
+        
+        
+        public IActionResult MenuDuzenle(int id)
+        {
+            Menu menu = _db.Menuler.Where(x => x.Id == id).FirstOrDefault();
+            return View(menu);
+        }
         public IActionResult MenuSil(int id)
         {
             var menu = _db.Menuler.Where(x=>x.Id == id).FirstOrDefault();
